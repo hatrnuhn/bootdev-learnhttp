@@ -1,0 +1,56 @@
+Deploying a real website to the internet is actually quite simple. It involves only a couple of steps:
+
+1. Create a server that hosts your website files and connect it to the internet
+2. Acquire a domain name
+3. Connect the domain name to the IP address of your server
+4. Your server is accessible via the internet!
+=============================
+ch2
+For example, the URL [https://example.com/path] has a hostname of [example.com]. The [https://] and [/path] portions aren't part of the [domain name -> IP address] mapping that we've been learning about.
+==================
+ch3
+A URI, or Uniform Resource Identifier, is a unique character sequence that identifies a resource that is (almost always) accessed via the internet.
+URIs come in two main types:
+URLs
+URNs
+---
+URL examples
+http://example.com
+mailto:noreply@fantasyquest.app
+
+note that not all schemes (http, ftp, mailto, etc) require a '//'
+
+The "http" in a URL is always followed by ://. All URLs have the colon, but the // part is only included for schemes that have an authority component. As you can see above, the mailto scheme doesn't use an authority component, so it doesn't need the slashes.
+---
+A port can only be used by one program at a time.
+avail ports: 0 - 65,535 (although 0 is reserved for OS, techincally not an actual port).
+
+If a port isn't present in a URL the default is used based on the protocol used (http:80, https:443, etc).
+=============================
+ch4
+When a function is prefixed with the async keyword, it will automatically return a Promise. That promise resolves with the value that your code returns from the function. You can think of async as "wrapping" your function within a promise.
+
+While even the [.then()] syntax is generally easier to use than callbacks without the [Promise] API, the [await] syntax makes them even easier to use. You should use [async] and [await] over [.then] and New Promise() as a general rule.
+=============================
+ch5
+Error handling via try/catch is not the same as debugging. Likewise, errors are not the same as bugs.
+
+- Good code with no bugs can still produce errors that are gracefully handled
+- Bugs are, by definition, bits of code that aren't working as intended
+=============================
+ch8
+You may be thinking PUT is similar to POST or PATCH, and frankly, you'd be right! The main difference is that PUT is meant to be idempotent, meaning multiple identical PUT requests should have the same effect on the server. In contrast, several identical POST requests would have additional side effects, such as creating multiple copies of the resource.
+
+The PATCH method is intended to partially modify a resource.
+Long story short, PATCH isn't nearly as popular as PUT, and many servers, even if they allow partial updates, will still just use the PUT method for that.
+=============================
+ch10
+HTTPS encryption/decrycption
+0. Server generates public key (let's say PUBK) and private key (PRIV)
+1. Client contacts server
+2. Server sends PUBK to Client
+3. Client and Server negotiate symmetrical key (SYM)
+    - Client generates SYM using PUBK then sends it to Server
+    - Server then generate the SYM key using the generated SYM by Client and PUBK
+    - SYM is now used to encrypt & decrycption
+4. The remaining communication happens
